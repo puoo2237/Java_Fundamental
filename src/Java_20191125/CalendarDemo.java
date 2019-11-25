@@ -7,14 +7,37 @@ public class CalendarDemo {
 	private int day;
 	private int total;
 	int[] monthArray = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	
-	public void set(int y, int m, int d){
-		year = y;
-		month = m;
-		day = d;
+
+	// 생성자의 overloading
+	// 매개변수 1개인 생성자
+	public CalendarDemo(int year) {
+//		year = y;
+		this(year, 0, 0); // 다른 생성자 호출 
 	}
 
-	public int getTotalCount(){
+	// 매개변수 2개인 생성자
+	public CalendarDemo(int year, int month) {
+//		year = y;
+//		month = m;
+		this(year, month, 0);
+	}
+
+	// 매개변수 3개인 생성자
+	public CalendarDemo(int year, int month, int day) { // 반환값을 붙이면 메서드가 됨 => 반환값이 없어야 함
+		this.year = year; // 자기자신 객체
+		this.month = month;
+		this.day = day;
+		getTotalCount(); // 정보의 은닉화
+	}
+
+	// public void set(int y, int m, int d){
+	// year = y;
+	// month = m;
+	// day = d;
+	// getTotalCount(); // 정보의 은닉화
+	// }
+
+	public int getTotalCount() {
 		// 년 => 일수 계산하기
 		total = (year - 1) * 365 + (year / 4) - (year / 100) + (year / 400);
 
@@ -22,7 +45,7 @@ public class CalendarDemo {
 		for (int i = 0; i < (month - 1); i++) {
 			total += monthArray[i];
 		}
-		
+
 		// 윤달 고려하여 계산하기
 		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
 			total += 1;
@@ -30,13 +53,13 @@ public class CalendarDemo {
 
 		// 나머지 일수 더해주기
 		total += day;
-		
+
 		return total;
 	}
-	
-	public void print(){
+
+	public void print() {
 		String message = null;
-		
+
 		switch (total % 7) {
 		case 1:
 			message = "월요일";
@@ -62,11 +85,12 @@ public class CalendarDemo {
 		}
 		System.out.printf("%d년 %d월 %d일 %s 입니다.", year, month, day, message);
 	}
-	
+
+	// new CalendarDemo(): 생성자가 없을 경우 compiler는 자동으로 매개변수 없는 생성자를 만듦
+	// 생성자가 있으면 compiler가 자동으로 만들지 않음
 	public static void main(String[] args) {
-		CalendarDemo c = new CalendarDemo();
-		c.set(2019, 11, 25); // year, month, day에 값 저장
-		c.getTotalCount(); // total 값 저장
+		CalendarDemo c = new CalendarDemo(2019, 11, 25);
+		// c.set(2019, 11, 25); // year, month, day에 값 저장
 		c.print(); // 조건에 해당하는 값을 출력
 	}
 }
