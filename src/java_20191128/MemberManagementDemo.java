@@ -27,13 +27,13 @@ public class MemberManagementDemo {
 		if(index.equals("1")){
 			insert();
 		}else if(index.equals("2")){
-			
+			update();
 		}else if(index.equals("3")){
-			
+			delete();
 		}else if(index.equals("4")){
-			
+			search();
 		}else if(index.equals("5")){
-			
+			System.out.println("프로그램 종료");
 		}else{
 			System.out.println("사요나라!!");
 		}
@@ -44,10 +44,21 @@ public class MemberManagementDemo {
 	// 3. ArrayList에 멤버를 추가한다.
 	// 4. print() 메서드를 호출하여 번호를 선택할 수 있게 한다.
 	// 5. 번호를 선택하세요> 메세지를 출력한 후 키보들 입력을 받게 대기 한다.
+	// 6. 번호를 입력받으면 run()메서드를 호출한다.
 	public void insert(){
+		String id = console("아이디>");
+		String name = console("이름>");
 		
-	}
-	
+		Member m = new Member(id, name);
+		list.add(m);
+		
+		System.out.printf("총 회원은 %d 명입니다. %n", list.size());
+		
+		print();
+		String index = console("번호를 선택하세요>");
+		run(index);
+		
+		}
 	
 	public static void main(String[] args) {
 		MemberManagementDemo m1 = new MemberManagementDemo();
