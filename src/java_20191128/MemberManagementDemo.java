@@ -68,6 +68,39 @@ public class MemberManagementDemo {
 	// 5. 번호를 선택하세요> 메세지를 출력한 후 키보들 입력을 받게 대기 한다.
 	// 6. 번호를 입력받으면 run()메서드를 호출한다.
 	public void update(){
+		if(list.size() > 0){
+			String preId = console("기존의 아이디>");
+			
+			for (int i = 0; i < list.size(); i++) {
+				Member chgList = list.get(i);
+				
+				if(chgList.getId().equals(preId)){
+					String chgId = console("변경할 아이디>");
+					list.remove(i);
+					list.add(new Member(chgId, chgList.getName()));
+					break;			
+				}else if(i == list.size()-1){
+					System.out.println("수정할 아이디가 없습니다.");
+				}
+			}			
+			System.out.println("*************************");
+			System.out.println("********회원 정보 출력********");
+			System.out.println("*************************");
+			for (Member member : list) {
+				System.out.printf("회원 아이디: %s, 회원 이름: %s %n", member.getId(), member.getName());
+			}
+			System.out.printf("총 회원은 %d 명입니다. %n", list.size());
+
+			print();
+			String index = console("번호를 선택하세요>");
+			run(index);
+
+		}else{
+			System.out.println("1번을 눌러주세요.");
+			print();
+			String index = console("번호를 선택하세요>");
+			run(index);
+		}
 		
 	}
 
@@ -80,18 +113,75 @@ public class MemberManagementDemo {
 	// 5. 번호를 선택하세요> 메세지를 출력한 후 키보들 입력을 받게 대기 한다.
 	// 6. 번호를 입력받으면 run()메서드를 호출한다.
 	public void delete(){
-		
+		if(list.size() > 0){
+			String removeId = console("삭제할 아이디>");
+			for (int i = 0; i < list.size(); i++) {
+				Member removeList = list.get(i);
+				if(removeList.getId().equals(removeId)){
+					list.remove(i);
+					System.out.println("삭제되었습니다.");
+					break;
+				}else if(i == list.size()-1){
+					System.out.println("삭제할 아이디가 없습니다.");
+				}
+			}
+			System.out.println("*************************");
+			System.out.println("********회원 정보 출력********");
+			System.out.println("*************************");
+			for (Member member : list) {
+				System.out.printf("회원 아이디: %s, 회원 이름: %s %n", member.getId(), member.getName());
+			}
+			System.out.printf("총 회원은 %d 명입니다. %n", list.size());
+
+			print();
+			String index = console("번호를 선택하세요>");
+			run(index);
+			
+		}else{
+			System.out.println("1번을 눌러주세요.");
+			print();
+			String index = console("번호를 선택하세요>");
+			run(index);
+		}
 	}
 	
 	// 1. 검색할 아이디를 입력받는다.
 	// 2. ArrayList에 있는 멤버 중에서 검색할 아이디를 찾아서 있으면 출력하고
     // 만약 없으면 "검색된 결과가 없습니다." 라는 메세지를 출력한다.
-	// 3. ArrayList에 있는 멤버정보를 모두 출력한다. <- 삭제 여부 확인을 위해
+	// 3. ArrayList에 있는 멤버정보를 모두 출력한다. 
 	// 4. print() 메서드를 호출하여 번호를 선택할 수 있게 한다.
 	// 5. 번호를 선택하세요> 메세지를 출력한 후 키보들 입력을 받게 대기 한다.
 	// 6. 번호를 입력받으면 run()메서드를 호출한다.
 	public void search(){
-		
+		if(list.size() > 0){
+			String searchId = console("검색할 아이디>");
+			for (int i = 0; i < list.size(); i++) {
+				Member searchList = list.get(i);
+				if(searchList.getId().equals(searchId)){
+					System.out.printf("찾으시는 회원 아이디: %s, 회원 이름: %s %n%n", searchList.getId(), searchList.getName());
+					break;
+				}else if(i == list.size()-1){
+					System.out.println("검색된 결과가 없습니다.");
+				}
+			}
+			System.out.println("*************************");
+			System.out.println("********회원 정보 출력********");
+			System.out.println("*************************");
+			for (Member member : list) {
+				System.out.printf("회원 아이디: %s, 회원 이름: %s %n", member.getId(), member.getName());
+			}
+			System.out.printf("총 회원은 %d 명입니다. %n", list.size());
+
+			print();
+			String index = console("번호를 선택하세요>");
+			run(index);
+			
+		}else{
+			System.out.println("1번을 눌러주세요.");
+			print();
+			String index = console("번호를 선택하세요>");
+			run(index);
+		}
 	}
 	
 	
