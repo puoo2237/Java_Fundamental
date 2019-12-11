@@ -68,5 +68,9 @@ public class Calendar {
 		System.out.printf("%d년 %d월 %d일 %s 입니다.", year, month, day, message);
 		
 	}
+	
+	public void print(int year, int month){
+		
+	}
 
 }
